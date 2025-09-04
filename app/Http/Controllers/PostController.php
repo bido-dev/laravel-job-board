@@ -1,42 +1,69 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    function index(){
-        // fetch all posts from the database
-        // using Eloquent ORM
-        // and store them in the $data variable
-        $data = Post::all();
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+         $data = Post::paginate(5);
 
         // pass data to the view
         return view('post.index', ['posts' => $data, "pageTitle" => "Blog"]);
     }
 
-    function show($id){
-        // fetch a single post by its ID
-        $post = Post::find($id);
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('post.create', ["pageTitle" => "Create Post"]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        // @TODO: Implement store logic
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+         $post = Post::find($id);
 
         return view('post.show', ['post'=> $post, "pageTitle" => "Blog Post"]);
     }
-    function create(){
-       $post = Post::create([
-        "title" => "My first post",
-        "body" => "This is the body of my 2nd post",
-        "author" => "Omar", // 🧨 This field is crucial!
-        "published" => true
-        ]);
 
-        return redirect('/blog');
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //@TODO: Implement edit logic
     }
 
-    function delete(){
-        Post::destroy(1);
-        return redirect('/blog');
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //@TODO: Implement update logic
     }
-    
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

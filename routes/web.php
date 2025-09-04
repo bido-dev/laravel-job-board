@@ -13,14 +13,9 @@ Route::get('/about', [IndexController::class, 'about']);
 Route::get('/contact', [IndexController::class, 'contact']);
 Route::get('/job', [JobController::class, 'index']);
 
-Route::get('/blog', [PostController::class, 'index']);
-Route::get('/blog/create', [PostController::class, 'create']);
-Route::get('/blog/delete', [PostController::class, 'delete']);
-Route::get('/blog/{id}', [PostController::class, 'show']);
+Route::resource('blog', PostController::class);
 
 Route::get('/comments', [CommentController::class, 'index']);
-Route::get('comments/create', [CommentController::class, 'create']);
+Route::post('comments', [CommentController::class, 'create']);
 
-Route::get('/tags', [TagController::class, 'index']);
-Route::get('tags/create', [TagController::class, 'create']);
-Route::get('/tags/test-many-to-many', [TagController::class, 'testManyToMany']);
+Route::resource('tags', TagController::class);

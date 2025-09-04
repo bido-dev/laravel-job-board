@@ -1,29 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Tag;
-use App\Models\Post;    
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\api;
 
-class TagController extends Controller
+use App\Http\Controllers\Controller;
+use App\Models\Post;
+use Illuminate\Http\Request;
+//use Illuminate\Http\Response;
+class PostApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-         $data = Tag::paginate(10);
-
-        // pass data to the view
-        return view('tag.index', ['tags' => $data, "pageTitle" => "Blog"]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $data = Post::get(); 
+        return response($data, 200);
     }
 
     /**
@@ -38,14 +29,6 @@ class TagController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }

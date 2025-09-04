@@ -1,36 +1,67 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
-
 class CommentController extends Controller
 {
-    function index(){
-        // fetch all comments from the database
-        // using Eloquent ORM
-        // and store them in the $data variable
-        $data = Comment::all();
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $data = Comment::paginate(10);
 
         // pass data to the view
         return view('comment.index', ['comments' => $data, "pageTitle" => "Blog"]);
     }
 
-   /* function show($id){
-        $comment = Comment::find($id);
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
-        return view('comment.show', ['comment'=> $comment, "pageTitle" => "Blog comment"]);
-    }*/
-    function create(){
-       $comment = Comment::create([
-        "author" => "Lulu", // 🧨 This field is crucial!
-        'content' => "This is a comment on the post",
-        'post_id' => 1, // Assuming the post with ID 1 exists
-        "published" => true
-]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-        return redirect('/comments');
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
